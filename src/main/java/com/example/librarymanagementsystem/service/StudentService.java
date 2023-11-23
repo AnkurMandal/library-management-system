@@ -1,5 +1,7 @@
-package com.example.librarymanagementsystem;
+package com.example.librarymanagementsystem.service;
 
+import com.example.librarymanagementsystem.model.Student;
+import com.example.librarymanagementsystem.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

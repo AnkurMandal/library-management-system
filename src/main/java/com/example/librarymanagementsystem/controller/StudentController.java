@@ -1,5 +1,7 @@
-package com.example.librarymanagementsystem;
+package com.example.librarymanagementsystem.controller;
 
+import com.example.librarymanagementsystem.model.Student;
+import com.example.librarymanagementsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

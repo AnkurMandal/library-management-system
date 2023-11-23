@@ -1,9 +1,7 @@
-package com.example.librarymanagementsystem;
+package com.example.librarymanagementsystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import com.example.librarymanagementsystem.Enum.Gender;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,11 +11,13 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @Entity
+@Table(name="student_info")
 public class Student {
 
       @Id
       int regNo;
 
+      @Column(name="student_name")
       String name;
 
       int age;
@@ -26,5 +26,7 @@ public class Student {
 
       @Enumerated(EnumType.STRING)
       Gender gender;
-    
+
+      @OneToOne(mappedBy = "student")
+      LibraryCard libraryCard;
 }
