@@ -15,6 +15,8 @@ import lombok.experimental.FieldDefaults;
 public class Student {
 
       @Id
+//      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      @GeneratedValue(strategy = GenerationType.AUTO)
       int regNo;
 
       @Column(name="student_name")
@@ -22,11 +24,12 @@ public class Student {
 
       int age;
 
+      @Column(unique = true,nullable = false)
       String email;
 
       @Enumerated(EnumType.STRING)
       Gender gender;
 
-      @OneToOne(mappedBy = "student")
+      @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
       LibraryCard libraryCard;
 }

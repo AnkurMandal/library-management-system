@@ -4,6 +4,7 @@ import com.example.librarymanagementsystem.Enum.CardStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.sql.Date;
@@ -17,13 +18,16 @@ import java.sql.Date;
 public class LibraryCard {
 
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
     String cardNo;
 
+    @Enumerated(EnumType.STRING)
     CardStatus cardStatus;
 
-    @CreatedDate
+    @CreationTimestamp
     Date issuedDate;
 
     @OneToOne
