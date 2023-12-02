@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
@@ -18,8 +20,7 @@ import java.sql.Date;
 public class LibraryCard {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String cardNo;
@@ -33,4 +34,7 @@ public class LibraryCard {
     @OneToOne
     @JoinColumn
     Student student;
+
+    @OneToMany(mappedBy = "libraryCard",cascade = CascadeType.ALL)
+    List<Transaction>transactions=new ArrayList<>();
 }

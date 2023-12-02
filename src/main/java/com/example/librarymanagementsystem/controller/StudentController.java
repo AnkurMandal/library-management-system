@@ -1,5 +1,7 @@
 package com.example.librarymanagementsystem.controller;
 
+import com.example.librarymanagementsystem.dto.requestDTO.StudentRequest;
+import com.example.librarymanagementsystem.dto.responseDTO.StudentResponse;
 import com.example.librarymanagementsystem.model.Student;
 import com.example.librarymanagementsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +10,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
     StudentService studentService;
 
     @PostMapping("/add")
-    public ResponseEntity addStudent(@RequestBody Student student){
-        String response=studentService.addStudent(student);
+    public ResponseEntity addStudent(@RequestBody StudentRequest studentRequest){
+        StudentResponse response=studentService.addStudent(studentRequest);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
@@ -35,7 +39,9 @@ public class StudentController {
 
     //get all the student in the db
 
-    //get list of all male student
-
      */
+    @GetMapping("/get-males")
+    public List<String> getAllMales(){
+        return studentService.getAllMales();
+    }
 }

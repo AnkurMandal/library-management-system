@@ -22,4 +22,12 @@ public class AuthorController {
         String response =authorService.addAuthor(author);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
+
+    //HW api's
+
+    //update the email id of an author --->> obserse last Activity column
+
+    //give me the names of all the books written by a particular author
+
+    //give me the names of authors who have written more than 'x' number of books
 }

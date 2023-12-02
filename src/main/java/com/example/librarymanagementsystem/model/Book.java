@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +17,7 @@ import lombok.experimental.FieldDefaults;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;
@@ -26,11 +29,14 @@ public class Book {
 
     double cost;
 
+    boolean issued;
+
     @ManyToOne
     @JoinColumn
     Author author;
 
-
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    List<Transaction> transactions=new ArrayList<>();
 
 
 }

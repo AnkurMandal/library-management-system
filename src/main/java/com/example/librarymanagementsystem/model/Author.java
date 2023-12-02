@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String name;
@@ -31,5 +31,5 @@ public class Author {
     Date lastActivity;
 
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
-    List<Book> book=new ArrayList<>();
+    List<Book> books=new ArrayList<>();
 }

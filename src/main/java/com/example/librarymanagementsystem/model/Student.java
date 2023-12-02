@@ -15,8 +15,7 @@ import lombok.experimental.FieldDefaults;
 public class Student {
 
       @Id
-//      @GeneratedValue(strategy = GenerationType.IDENTITY)
-      @GeneratedValue(strategy = GenerationType.AUTO)
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
       int regNo;
 
       @Column(name="student_name")
