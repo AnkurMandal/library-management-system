@@ -3,6 +3,7 @@ package com.example.librarymanagementsystem.service;
 import com.example.librarymanagementsystem.Enum.CardStatus;
 import com.example.librarymanagementsystem.Enum.Gender;
 import com.example.librarymanagementsystem.dto.requestDTO.StudentRequest;
+import com.example.librarymanagementsystem.dto.responseDTO.LibraryCardResponse;
 import com.example.librarymanagementsystem.dto.responseDTO.StudentResponse;
 import com.example.librarymanagementsystem.model.LibraryCard;
 import com.example.librarymanagementsystem.model.Student;
@@ -40,16 +41,38 @@ public class StudentService {
 
         //converting model to response dto
         StudentResponse studentResponse=new StudentResponse();
+
         studentResponse.setName(savedStudent.getName());
         studentResponse.setEmail(savedStudent.getEmail());
         studentResponse.setMessage("Student saved successfully");
-        studentResponse.setCardIssuedNo(savedStudent.getLibraryCard().getCardNo());
+
+        LibraryCardResponse libraryCardResponse=new LibraryCardResponse();
+        libraryCardResponse.setCardNo(savedStudent.getLibraryCard().getCardNo());
+        libraryCardResponse.setCardStatus(savedStudent.getLibraryCard().getCardStatus());
+        libraryCardResponse.setIssuedDate(savedStudent.getLibraryCard().getIssuedDate());
+
+        studentResponse.setLibraryCardResponse(libraryCardResponse);
+
         return studentResponse;
     }
 
-    public Student getStudent(int regNo) {
+    public StudentResponse getStudent(int regNo) {
         Optional<Student>studentOptional=studentRepository.findById(regNo);
-        if(studentOptional.isPresent())return studentOptional.get();
+
+        if(studentOptional.isPresent()){
+            StudentResponse studentResponse=new StudentResponse();
+            studentResponse.setName(studentOptional.get().getName());
+            studentResponse.setEmail(studentOptional.get().getEmail());
+            studentResponse.setMessage("Student added Successfully");
+
+            LibraryCardResponse libraryCardResponse=new LibraryCardResponse();
+            libraryCardResponse.setCardNo(studentOptional.get().getLibraryCard().getCardNo());
+            libraryCardResponse.setCardStatus(studentOptional.get().getLibraryCard().getCardStatus());
+            libraryCardResponse.setIssuedDate(studentOptional.get().getLibraryCard().getIssuedDate());
+
+            studentResponse.setLibraryCardResponse(libraryCardResponse);
+            return studentResponse;
+        }
         return null;
     }
 
